@@ -255,14 +255,47 @@ vec3 Scene::raytrace( vec3 &rayStart, vec3 &rayDir, int depth, int thisObjIndex,
 // false if there's total internal reflection (hence, no refraction).
 
 
-bool Scene::findRefractionDirection( vec3 &rayDir, vec3 &N, vec3 &refractionDir )
+bool Scene::findRefractionDirection(vec3& rayDir, vec3& N, vec3& refractionDir)
 
 {
-  // YOUR CODE HERE
+    //assuming air to glass
+    float ni = 1.008;//air
+    float nr = 1.510;//glass
+    if (rayDir * N > 0)//if the light is leaving the surface, ie. in same direction as normal
+    {
+        ni = 1.510;
+        nr = 1.008;
+        N = vec3(-N.x, -N.y, -N.z);
+    }
+    vec3 rayDirNeg = vec3(-rayDir.x, -rayDir.y, -rayDir.z);
+    float incAngle = acos(N * rayDirNeg);
+    float refAngle = asin(ni * sin(incAngle) / nr);
 
-  return false;
+    if (((ni / nr) * sin(incAngle)) <= 1)
+    {
+        float crossRNx = (rayDir.y * N.z) - (rayDir.z * N.y);
+        float crossRNy = (rayDir.z * N.x) - (rayDir.x * N.z);
+        float crossRNz = (rayDir.x * N.y) - (rayDir.y * N.x);
+
+        vec3 crossRN = vec3(crossRNx, crossRNy, crossRNz);
+
+        float crossNRNx = (N.y * crossRN.z) - (N.z * crossRN.y);
+        float crossNRNy = (N.z * crossRN.x) - (N.x * crossRN.z);
+        float crossNRNz = (N.x * crossRN.y) - (N.y * crossRN.x);
+
+        vec3 crossNRN = vec3(crossNRNx, crossNRNy, crossNRNz);
+        vec3 M = crossNRN.normalize();
+
+        refractionDir = vec3(cos(refAngle) * (-1 * N.normalize()) + sin(refAngle) * M.normalize());
+
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    // YOUR CODE HERE
 }
-
 
 
 
