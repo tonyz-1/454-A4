@@ -382,12 +382,12 @@ vec3 Scene::pixelColour( int x, int y )
           float subPixX, subPixY;
           if (jitter) {
               subPixX = x - 0.5 + (i + (float)rand() / (float)RAND_MAX) * subPixSize;
-              subPixY = y - 0.5 + (i + (float)rand() / (float)RAND_MAX) * subPixSize;
+              subPixY = y - 0.5 + (n + (float)rand() / (float)RAND_MAX) * subPixSize;
           }
           else
           {
               subPixX = x - 0.5 + (i + (0.5)) * subPixSize;
-              subPixY = y - 0.5 + (i + (0.5)) * subPixSize;
+              subPixY = y - 0.5 + (n + (0.5)) * subPixSize;
           }
 
           vec3 dir = (llCorner + subPixX * right + subPixY * up).normalize();
