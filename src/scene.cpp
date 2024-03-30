@@ -235,7 +235,11 @@ vec3 Scene::raytrace( vec3 &rayStart, vec3 &rayDir, int depth, int thisObjIndex,
   if (opacity < 1.0) { // not completely opaque
 
     // YOUR CODE HERE
-    //
+      Iout = vec3(Iout.x * opacity, Iout.y * opacity, Iout.z * opacity);
+      vec3 newRefDir;
+      findRefractionDirection(E, N, newRefDir);
+      raytrace(Iout, newRefDir, depth, objIndex, objPartIndex);
+      
     // Use the 'findRefractionDirection' function (below) and raytrace in that direction if appropriate.
   }
 
