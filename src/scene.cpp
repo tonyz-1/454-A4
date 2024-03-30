@@ -352,7 +352,7 @@ vec3 Scene::pixelColour( int x, int y )
 
   vec3 result;
 
-#if 1
+#if 0
 
   // This sends a single ray through the pixel centre.  Disable this
   // section of code when your antialiasing code (below) is ready.
@@ -371,7 +371,32 @@ vec3 Scene::pixelColour( int x, int y )
 
   // YOUR CODE HERE
 
-  result = vec3(0,1,0); // replace this
+  result = vec3(0,0,0); // replace this
+  float subPixSize = 1.0 / numPixelSamples;
+
+
+  for (int i = 0 ; i < numPixelSamples; i++) 
+  {
+      for (int n = 0; n < numPixelSamples; n++) 
+      {
+          float subPixX, subPixY;
+          if (jitter) {
+              subPixX = x - 0.5 + (i + (float)rand() / (float)RAND_MAX) * subPixSize;
+              subPixY = y - 0.5 + (i + (float)rand() / (float)RAND_MAX) * subPixSize;
+          }
+          else
+          {
+              subPixX = x - 0.5 + (i + (0.5)) * subPixSize;
+              subPixY = y - 0.5 + (i + (0.5)) * subPixSize;
+          }
+
+          vec3 dir = (llCorner + subPixX * right + subPixY * up).normalize();
+
+          vec3 subColour = raytrace(eye->position, dir, 0, -1, -1);
+
+          result =  result + subColour;
+      }
+  }
 
 #endif
 
