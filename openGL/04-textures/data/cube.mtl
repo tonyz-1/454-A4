@@ -1,0 +1,22 @@
+# material for cube
+
+newmtl brick
+  Ka 0.1 0.1 0.1
+  Kd 0 0.5 0.5
+  Ks 0.3 0.3 0.3
+  N  40
+  map_Kd brick.ppm
+
+newmtl tree1
+  Ka 0.1 0.1 0.1
+  Kd 0.7 1 0.2
+  Ks 0.3 0.3 0.3
+  N  4
+  map_Kd tree1.ppm
+
+newmtl tree2
+  Ka 0.1 0.1 0.1
+  Kd 0.7 1 0.2
+  Ks 0.3 0.3 0.3
+  N  4
+  map_Kd tree2.ppm

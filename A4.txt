@@ -1,0 +1,47 @@
+CISC 454 Assignment 4
+Due Friday, April 5 at noon
+
+
+You are to modify a raytracer to add refraction and to add pixel
+antialising with jittering.  See "YOUR CODE HERE" in scene.cpp.
+Change only the code in scene.cpp.
+
+On Linux and MacOS, run the program as
+
+  ./rt ../worlds/basic
+  ./rt ../worlds/transparent
+
+  On Windows Visual Studio, include "..\worlds\basic" or
+  "..\worlds\transparent" in the Debugging command-line arguments.
+  
+In the raytracing window
+
+  As long as you're dragging the mouse to shift the viewpoint, the
+  scene will be redrawn quickly using OpenGL.  As soon as you stop
+  dragging the mouse, the raytracing code is called, and eventually a
+  raytraced image is shown.  You can drag the mouse again while the
+  raytracing is being done; the raytracing will be restarted as soon
+  as you stop dragging.
+
+  In the rendering window, press '?' to get a list of options in the
+  console window.  These options allow you to change many things,
+  including the number of sample rays and jittering.
+
+  Click the mouse on a pixel to see the rays traced through that
+  pixel.  You can use the right mouse button to rotate the scene to
+  see the rays from a different viewpoint.  The rays are coloured:
+
+    blue:   a ray that hit an object
+    grey:   a ray that did not hit an object
+    yellow: a shadow ray that was sent toward a point light source
+
+To Hand In
+
+  Make a directory called 'a4'.  In that directory, put
+
+    - schene.cpp
+    - README.txt     with your name(s) and netID(s)
+
+  Create a zip archive z4.zip of the a4 directory and submit it to OnQ.
+
+  Follow these submission instructions exactly.

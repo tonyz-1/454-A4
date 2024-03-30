@@ -1,0 +1,44 @@
+# material for triceratops
+
+newmtl background
+  Ka 0.1 0.1 0.1
+  Kd 1 1 1
+  Ks 0.1 0.1 0.1
+  N  40
+
+newmtl eyes
+  Ka 0.1 0.1 0.1
+  Kd 0.9 0.5 0.5
+  Ks 0.1 0.1 0.1
+  N  40
+
+newmtl horns
+  Ka 0.1 0.1 0.1
+  Kd 0.7 0.7 0.7
+  Ks 0.1 0.1 0.1
+  N  40
+
+newmtl mouth
+  Ka 0.1 0.1 0.1
+  Kd 0.7 0.5 0.1
+  Ks 0.1 0.1 0.1
+  N  40
+
+newmtl nose
+  Ka 0.1 0.1 0.1
+  Kd .7 0.5 0.1
+  Ks 0.1 0.1 0.1
+  N  40
+
+newmtl skin
+  Ka 0.1 0.1 0.1
+  Kd 0.4 0.8 0.1
+  Ks 0.1 0.1 0.1
+  N  40
+
+newmtl toes
+  Ka 0.1 0.1 0.1
+  Kd 0.5 0.5 0.2
+  Ks 0.1 0.1 0.1
+  N  40
+
