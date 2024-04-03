@@ -193,7 +193,8 @@ vec3 Scene::raytrace( vec3 &rayStart, vec3 &rayDir, int depth, int thisObjIndex,
 #endif
 
   vec3 Iout = mat->Ie + vec3( mat->ka.x * Ia.x, mat->ka.y * Ia.y, mat->ka.z * Ia.z );
-
+  vec3 Iin = raytrace( P, R, depth, objIndex, objPartIndex );
+  Iout = Iout + calcIout( N, R, E, E, kd, mat->ks, mat->n, Iin );
   // Add contributions from point lights
 
   for (int i=0; i<lights.size(); i++) {
@@ -237,8 +238,12 @@ vec3 Scene::raytrace( vec3 &rayStart, vec3 &rayDir, int depth, int thisObjIndex,
     // YOUR CODE HERE
       Iout = vec3(Iout.x * opacity, Iout.y * opacity, Iout.z * opacity);
       vec3 newRefDir;
-      findRefractionDirection(E, N, newRefDir);
-      raytrace(Iout, newRefDir, depth, objIndex, objPartIndex);
+      if(findRefractionDirection(rayDir, N, newRefDir)){
+        vec3 Irefract = raytrace(P, newRefDir, depth, objIndex, objPartIndex);
+        Irefract = vec3(Irefract.x * (1 - opacity), Irefract.y * (1 - opacity), Irefract.z * (1 - opacity));
+        // Iout = Iout + calcIout( N, R, E, E, kd, mat->ks, mat->n, Irefract );
+        Iout = Iout + Irefract;
+      }
       
     // Use the 'findRefractionDirection' function (below) and raytrace in that direction if appropriate.
   }
